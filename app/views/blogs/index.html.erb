@@ -5,14 +5,33 @@
     <th>タイトル</th>
     <th>内容</th>
   </tr>
-<% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= link_to '詳細を確認する', blog_path(blog.id) %></td>
-    <td><%= link_to '編集', edit_blog_path(blog.id) %></td>
-    <td><%= link_to '削除', blog_path(blog.id), method: :delete %></td>
-  </tr>
-<% end %>
 </table>
+<div class="container">
+  <div class="row">
+    <% @blogs.each do |blog| %>
+    <div class="col-md-3 card card-body m-1">
+      <div class="">
+        <h4><%= blog.title %></h4>
+      </div>
+      <div class="">
+        <%= blog.content %>
+      </div>
+      <div class="container">
+        <div class="row">
+          <span class="col-md-3">
+            <%= link_to 'show', blog_path(blog.id),class:"btn btn-primary btn-sm m-1" %>
+          </span>
+          <span class="col-md-3">
+            <%= link_to 'edit', edit_blog_path(blog.id) ,class:"btn btn-secondary m-1 btn-sm"%>
+          </span>
+          <span class="col-md-3">
+            <%= link_to 'delete', blog_path(blog.id),class:"btn btn-warning m-1 btn-sm", method: :delete %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
 <%= link_to '新しくブログを作成する', new_blog_path %>
